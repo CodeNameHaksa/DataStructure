@@ -21,7 +21,7 @@ public class Main {
             idx += 1;
         }
         int temp = data[0], start = 0, end = 1;
-        while (start < n){
+        while (start <= end){
             if (temp == m){
                 ans++;
                 temp -= data[start];
