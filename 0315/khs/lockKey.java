@@ -2,29 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-//        for(int i=0;i<N;i++){
-//            for(int j=0;j<N;j++){
-//                System.out.print(key[i][j]+" ");
-//            }
-//            System.out.println();
-//        }
-//        System.out.println();
-//
-//        for(int i=0;i<M+2*N-2;i++){
-//            for(int j=0;j<M+2*N-2;j++){
-//                System.out.print(lock[i][j]+" ");
-//            }
-//            System.out.println();
-//        }
-//
-//        System.out.println();
-//        int[][] arr = rotate(key);
-//        for(int i=0;i<N;i++){
-//            for(int j=0;j<N;j++){
-//                System.out.print(arr[i][j]+" ");
-//            }
-//            System.out.println();
-//        }
+
 public class lockKey {
     public static void main(String[] args)throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -50,20 +28,24 @@ public class lockKey {
                 lock[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-
-        System.out.println(checkArr(lock, N, M));
-
-
+        int[][] lockarr = new int[7][7];
+        //lockarr = new int[][]{{0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}, {0, 0, 2, 2, 2, 0, 0}, {0, 0, 2, 2, 2, 0, 0}, {0, 0, 2, 2, 2, 0, 0}, {0, 0, 0, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}};
+        //System.out.println(checkArr(lockarr, N, M));
+        boolean flag =false;
         for(int i=0;i<4;i++){
             if(attachArr(key, lock)){
-                System.out.println("Success");
+                flag = true;
                 break;
             }else{
                 key = rotate(key);
             }
         }
 
-        System.out.println("Fail");
+        if(flag){
+            System.out.println("Success");
+        }else{
+            System.out.println("Fail");
+        }
 
     }
 
@@ -80,40 +62,59 @@ public class lockKey {
 
     public static boolean checkArr(int[][] arr, int N, int M){
         int k = arr[N-1][N-1];
-        boolean flag = false;
-        for(int i=N-1;i<N+M-1;i++){
-            for(int j=N-1;j<N+M-1;j++){
-                if(arr[i][j]!=k){
-                    flag = false;
-                    break;
-                }else{
-                    flag = true;
+        int x = N-1;
+        int y = N-1;
+
+        for(int i = 0 ;i < M; i++){
+            for(int j = 0; j < M; j++){
+                if(arr[x+i][y+j]!=k){
+                    return false;
                 }
             }
         }
 
-        return flag;
+        return true;
     }
 
     public static boolean attachArr(int[][] key, int[][]lock){
         int N = key.length;
-        int M = lock.length;
+        int M = lock.length-2*N+2;
         int[][] tmp = lock;
-        boolean flag = false;
 
-        for(int i=0;i<N+M+1;i++){
-            for(int j=0;j<N;j++){
-                for(int k=0;k<N;k++){
-                    tmp[j+i][k+i] += key[j][k];
+
+        for(int x=0;x<M+N-1;x++){
+            for(int y=0;y<N+M-1;y++) {
+
+                for (int j = 0; j < N; j++) {
+                    for (int k = 0; k < N; k++) {
+//                        System.out.println("j, k"+j+" "+k);
+                        tmp[x + j][y + k] += key[j][k];
+                    }
                 }
-            }
-            if(checkArr(tmp, N, M)){
-                flag = true;
-                break;
+
+//                System.out.println("초기화");
+                if (checkArr(tmp, N, M)) {
+                    return true;
+                }
+
+                for (int j = 0; j < N; j++) {
+                    for (int k = 0; k < N; k++) {
+                        tmp[x + j][y + k] -= key[j][k];
+                    }
+                }
             }
         }
 
-        return flag;
+        return false;
+    }
+
+    public static void printArr(int[][] arr){
+        for(int i=0;i<arr.length;i++){
+            for(int j=0;j<arr.length;j++){
+                System.out.print(arr[i][j]+" ");
+            }
+            System.out.println();
+        }
     }
 
 }
