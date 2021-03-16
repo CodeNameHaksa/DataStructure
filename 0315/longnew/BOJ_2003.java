@@ -22,15 +22,15 @@ public class Main {
         }
         int temp = data[0], start = 0, end = 1;
         while (start <= end){
+            if (end == n && temp < m)
+                break;
+            
+            
             if (temp == m){
                 ans++;
                 temp -= data[start];
                 start++;
-            }
-
-            if (end == n && temp < m)
-                break;
-            else if(temp < m){
+            }else if(temp < m){
                 temp += data[end];
                 end++;
             }else {
