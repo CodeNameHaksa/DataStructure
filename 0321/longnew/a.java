@@ -23,7 +23,7 @@ public class a {
                 else if (d == ')' || d == '}' || d == ']') {
                     
                     if (data.size() == 0){
-                        System.out.println("No Error");
+                        System.out.println("Compile Error");
                         System.exit(0);
                     }
                     
