@@ -24,7 +24,7 @@ public class a {
                     } else if (d == '}' && data.peek() != '{'){
                         System.out.println("Compile Error");
                         System.exit(0);
-                    } else if (d == ']' && data.peek() != ']') {
+                    } else if (d == ']' && data.peek() != '[') {
                         System.out.println("Compile Error");
                         System.exit(0);
                     } else
@@ -61,5 +61,4 @@ public class a {
 //
 //            System.out.println("No Error");
         }
-    }
 }
