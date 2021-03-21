@@ -16,9 +16,6 @@ public class a {
             for (int i = 0; i < s.length(); i++) {
                 char d = s.charAt(i);
 
-                if (flag == 1 || cnt == 1)
-                    continue;
-
                 if (d == '\"'){
                     if (flag == 0)
                         flag = 1;
@@ -26,7 +23,7 @@ public class a {
                         flag = 0;
                     continue;
                 }
-                
+
                 if (d == '\''){
                     if (cnt == 0)
                         cnt = 1;
@@ -35,6 +32,9 @@ public class a {
                     continue;
                 }
 
+                if (flag == 1 || cnt == 1)
+                    continue;
+                
                 if (d == '(' || d == '{' || d == '[')
                     data.push(d);
                 else if (d == ')' || d == '}' || d == ']') {
@@ -57,6 +57,7 @@ public class a {
                         data.pop();
                 }
             }
+            System.out.println(data.size());
         }
         if (data.size() != 0)
             System.out.println("Compile Error");
