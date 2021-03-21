@@ -43,6 +43,9 @@ public class a {
                 }
             }
         }
-        System.out.println("No Error");
+        if (data.size() != 0)
+            System.out.println("Compile Error");
+        else 
+            System.out.println("No Error");
     }
 }
