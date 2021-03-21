@@ -57,7 +57,6 @@ public class a {
                         data.pop();
                 }
             }
-            System.out.println(data.size());
         }
         if (data.size() != 0)
             System.out.println("Compile Error");
