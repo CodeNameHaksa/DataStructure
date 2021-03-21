@@ -12,34 +12,31 @@ public class a {
         boolean flag = false;
         boolean flag2 = false;
         boolean ignore = false;
-        while ((input = br.readLine()) != null) {
-//        for(int j=0;j<1;j++){
+//        while ((input = br.readLine()) != null) {
+        for(int j=0;j<1;j++){
 //
-//            input = br.readLine();
+            input = br.readLine();
             for (int i = 0; i < input.length(); i++) {
                 char tmp = input.charAt(i); // 새로 체크하는 문자
 
-                if ((tmp == '\"' || tmp == '\'')&& !ignore)
-                    ignore = true;
-                else if ((tmp == '\"' || tmp == '\'') && ignore)
-                    ignore = false;
-
-                if(ignore){
-                    continue;
-                }
-
-
-
+//                if ((tmp == '\"' || tmp == '\'')&& !ignore)
+//                    ignore = true;
+//                else if ((tmp == '\"' || tmp == '\'') && ignore)
+//                    ignore = false;
 //
-//
-//                if(tmp=='\"' && !flag2){
-//                    flag = !flag;
-//                }if(tmp =='\'' && !flag){
-//                    flag2 = !flag2;
-//                }
-//                if(flag||flag2){
+//                if(ignore){
 //                    continue;
 //                }
+
+
+                if(tmp=='\"' && !flag2){
+                    flag = !flag;
+                }if(tmp =='\'' && !flag){
+                    flag2 = !flag2;
+                }
+                if(flag||flag2){
+                    continue;
+                }
 
 
                 if (inArr(leftChar, tmp) != -1 || inArr(rightChar, tmp) != -1) {
