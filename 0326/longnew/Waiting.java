@@ -43,7 +43,6 @@ public class Waiting {
             // 일이 가장 빨리 끝나는 직원을 찾음.
             int temp_employee = employee.poll();
 
-
             if (temp_employee > temp_cus.l){
                 // 대기가 필요한 상황.
                 ans += temp_employee - temp_cus.l;
