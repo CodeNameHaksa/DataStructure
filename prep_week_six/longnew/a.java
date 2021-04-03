@@ -35,6 +35,7 @@ public class a {
             // 새로운 변수 하나를 만들어 놓고 돌려야 한다.
             HashSet<String> a = new HashSet<>(data.get(temp[1]));
 
+            // https://edu.goorm.io/learn/lecture/41/%EB%B0%94%EB%A1%9C%EC%8B%A4%EC%8A%B5-%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9-%EC%9E%90%EB%B0%94-java/lesson/792/set
             if (temp[0].equals("U")){
                 a.addAll(data.get(temp[2]));
                 a.addAll(data.get(temp[3]));
