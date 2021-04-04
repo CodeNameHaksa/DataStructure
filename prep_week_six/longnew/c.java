@@ -11,9 +11,14 @@ public class c {
     public static void main(String[] args) throws IOException {
         int m = Integer.parseInt(br.readLine());
         List<HashMap<String, Integer>> data = new ArrayList<>(m);
+        int cnt = 0;
 
-        for (int i = 0; i < m; i++){
-            String[] word = br.readLine().split(" ");
+        for (int i = 0; i < m * 2 - 1; i++){
+            String input = br.readLine();
+            if (input.equals(""))
+                continue;
+
+            String[] word = input.split(" ");
             data.add(new HashMap<>());
             temp = new HashSet<>();
 
@@ -30,11 +35,11 @@ public class c {
                         temp_stack += (char)(now + 32);
                 }
 
-                if (data.get(i).containsKey(temp_stack)){
-                    int value = data.get(i).get(temp_stack);
-                    data.get(i).put(temp_stack, value + 1);
+                if (data.get(cnt).containsKey(temp_stack)){
+                    int value = data.get(cnt).get(temp_stack);
+                    data.get(cnt).put(temp_stack, value + 1);
                 }else {
-                    data.get(i).put(temp_stack, 1);
+                    data.get(cnt).put(temp_stack, 1);
                     }
 
                 temp.add(temp_stack);
@@ -45,6 +50,7 @@ public class c {
             else
                 intersection = temp;
 
+            cnt++;
         }
 
         for (int i = 0; i < m; i++){
