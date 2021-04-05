@@ -1,0 +1,37 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class boj_1822 {
+    public static void main(String[] args)throws IOException {
+        Set<Integer> aSet = new TreeSet<>();
+        Set<Integer> bSet = new TreeSet<>();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] sarr = br.readLine().split(" ");
+        int a = Integer.parseInt(sarr[0]);
+        int b = Integer.parseInt(sarr[1]);
+
+        sarr = br.readLine().split(" ");
+        for(int i = 0; i < a; i++){
+            aSet.add(Integer.parseInt(sarr[i]));
+        }
+
+        sarr = br.readLine().split(" ");
+        for(int i = 0; i < b; i++){
+            bSet.add(Integer.parseInt(sarr[i]));
+        }
+
+        aSet.removeAll(bSet);
+
+        if(aSet.size() == 0){
+            System.out.println(0);
+        }else{
+            System.out.println(aSet.size());
+            for(Integer item: aSet){
+                System.out.print(item+" ");
+            }
+        }
+
+    }
+}
