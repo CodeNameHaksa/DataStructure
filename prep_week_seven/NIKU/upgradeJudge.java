@@ -41,8 +41,8 @@ public class upgradeJudge {
 
         for(long j : judge){
             sum += time/j;
-            if(sum >= 10){
-                sum -= sum/10;
+            if(time/j > 10){
+                sum -= (time/j)/10;
             }
         }
 
