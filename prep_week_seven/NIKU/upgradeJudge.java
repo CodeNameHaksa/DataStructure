@@ -42,14 +42,16 @@ public class upgradeJudge {
         for(long j : judge){
             long tmp = time/j;
             sum += tmp;
-            if(tmp > 10){
-                if(tmp%10 == 0){
-                    sum -= tmp/10 - 1;
-                }else{
-                    sum -= tmp/10;
-                }
-
-            }
+//            if(tmp > 10){
+//                if(tmp%10 == 0){
+//                    sum -= tmp/10 - 1;
+//                }else{
+//                    sum -= tmp/10;
+//                }
+//
+//            }
+            sum -= tmp/11;
+            //쉬는 한 회분까지 하나의 회차로 생각
         }
 
         return sum;
