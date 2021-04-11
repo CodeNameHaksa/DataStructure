@@ -25,15 +25,10 @@ public class a {
             cnt++;
         }
 
-        if (idx == 0){
-            System.out.println(0);
-        } else {
-            int back = cnt - idx;
-            if (idx > back)
-                System.out.println(back);
-            else
-                System.out.println(idx);
-        }
-
+        int back = cnt - idx;
+        if (idx > back)
+            System.out.println(back);
+        else
+            System.out.println(idx);
     }
 }
