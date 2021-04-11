@@ -15,7 +15,7 @@ public class upgradeJudge {
         for(int i = 0; i < sarr.length;i++){
             judge[i] = Long.parseLong(sarr[i]);
             if(max < judge[i]){
-                max = judge[i] * N;
+                max = judge[i] * N + N/10*judge[i];
             }
         }
 
@@ -51,7 +51,6 @@ public class upgradeJudge {
 //
 //            }
             sum -= tmp/11;
-            //쉬는 한 회분까지 하나의 회차로 생각
         }
 
         return sum;
