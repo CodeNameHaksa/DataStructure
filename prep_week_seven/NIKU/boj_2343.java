@@ -29,6 +29,7 @@ public class boj_2343 {
             mid = (left+right)/2;
             int sum = 0;
             cnt = 0;
+
             for(int i = 0; i < N; i ++){
                 if(sum + data[i] > mid){
                     sum = 0;
@@ -41,9 +42,9 @@ public class boj_2343 {
                 cnt++;
             }
 
-            if(cnt > M){
+            if(cnt > M){ // 디스크 갯수가 M보다 많다는건 용량이 작다는 소리
                 left = mid+1;
-            }else{
+            }else{ // 디스크 갯수가 M이랑 같더라도, 가장 용량이 작은 블루레이를 찾아야 하므로 계속 이동.
                 right = mid-1;
             }
 
