@@ -20,16 +20,17 @@ public class b {
                 limit = data[i];
         }
 
-        long left = 1, right = limit * n;
+
+        long left = 1, right = limit * n + ((n / 11) * limit);
         while (left <= right){
             long mid = (left + right) / 2;
             long total = 0;
 
             for (int i = 0; i < data.length; i++) {
                 total += mid / data[i];
-                // 쉬는 시간이 존재하기 때문에 11번째에 심사를 통과한 사람들은
+                // 쉬는 시간이 존재하기 때문에 10번째에 심사를 통과한 사람들은
                 // 없다. 그래서 몫을 빼서 값을 줄여주자.
-                total -= (mid / data[i]) / 11;
+                total -= (mid / data[i]) / 10;
             }
             if (total >= n)
                 right = mid - 1;
