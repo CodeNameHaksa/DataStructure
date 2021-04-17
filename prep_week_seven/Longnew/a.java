@@ -32,3 +32,33 @@ public class a {
             System.out.println(idx);
     }
 }
+
+/*
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Solution {
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    public static void main(String[] args) throws IOException{
+        String[] temp = br.readLine().split(" ");
+
+        int[] data = new int[temp.length];
+        for(int i = 0; i < temp.length; i++)
+            data[i] = Integer.parseInt(temp[i]);
+
+        int idx = 0;
+        for(int i = 0; i < temp.length - 1; i++){
+            if (data[i] > data[i + 1])
+                idx = i + 1;
+        }
+        int idx_co = temp.length - idx;
+
+        if (idx_co < idx)
+            System.out.println(String.valueOf(idx_co));
+        else
+            System.out.println(String.valueOf(idx));
+    }
+}
+*/
