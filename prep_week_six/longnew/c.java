@@ -73,3 +73,90 @@ public class c {
         }
     }
 }
+
+/*
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+import java.util.HashSet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
+
+public class Solution {
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static List<HashMap<String, Integer>> data;
+    static HashSet<String> intersection = new HashSet<>();
+
+    public static void main(String[] args) throws IOException{
+        int n = Integer.parseInt(br.readLine());
+        data = new ArrayList<>(n);
+
+        for (int i = 0; i < 2 * n - 1; i++){
+            HashSet<String> temp = new HashSet<>();
+            HashMap<String, Integer> temp_data = new HashMap<>();
+
+            String[] word = br.readLine().split(" ");
+            if (word.length == 1)
+                continue;
+
+            for (int j = 0; j < word.length; j++){
+                String target = "";
+                
+                for (int k = 0; k < word[j].length(); k++){
+                    Character ch = word[j].charAt(k);
+                    if ('A' <= ch && ch <= 'Z'){
+                        target += (char)(ch + 32);
+                        continue;
+                    }
+                    target += ch;
+                }
+                
+                if (temp_data.containsKey(target)){
+                    int val = temp_data.get(target);
+                    temp_data.put(target, val + 1);
+
+                }else{
+                    temp_data.put(target, 1);
+                }
+
+                temp.add(target);
+            }
+
+            if (intersection.size() == 0)
+                intersection.addAll(temp);
+            else
+                intersection.retainAll(temp);
+
+            data.add(temp_data);
+        }
+
+        for (int i = 0; i < data.size(); i++){
+            // need to initialize it.
+            HashMap<String, Integer> output_word = new HashMap<>(data.get(i));
+            int cnt = 0;
+            int max_val = 0;
+            String ans_str = "";
+
+            for (String item : output_word.keySet()){
+                // how to check the item is in the set????
+                // use contains it need the parameter that you're looking for
+                if(intersection.contains(item))
+                    continue;
+
+                int appear = output_word.get(item);
+                cnt += appear;
+
+                if(max_val < appear){
+                    max_val = appear;
+                    ans_str = item;
+                }
+            }
+
+            double ans = (double) max_val / cnt;
+            System.out.println(ans_str + " " + String.valueOf(ans));
+        }
+    }
+}
+*/
