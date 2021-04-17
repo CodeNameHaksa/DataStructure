@@ -66,3 +66,67 @@ public class Waiting {
 
     }
 }
+
+/*
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+import java.util.PriorityQueue;
+import java.util.List;
+import java.util.ArrayList;
+
+import java.util.Collections;
+
+public class Solution {
+
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    static class Cus implements Comparable<Cus>{
+        int arrive, use;
+
+        public Cus(int arrive, int use){
+            this.arrive = arrive;
+            this.use = use;
+        }
+
+        @Override
+        public int compareTo(Cus o){
+            return this.arrive - o.arrive;
+        }
+    }
+
+    public static void main(String[] args) throws IOException{
+        String[] data = br.readLine().split(" ");
+
+        int n = Integer.parseInt(data[0]);
+        int m = Integer.parseInt(data[1]);
+
+        PriorityQueue<Integer> employee = new PriorityQueue<>();
+        for (int i = 0; i < n; i++){
+            employee.add(0);
+        }
+
+        List<Cus> customer = new ArrayList<>();
+        for (int i = 0; i < m; i++){
+            data = br.readLine().split(" ");
+            customer.add(new Cus(Integer.parseInt(data[0]), Integer.parseInt(data[1])));
+        }
+
+        int wait = 0;
+        for (int i = 0; i < m; i++){
+            Cus now = customer.remove(0);
+            int employee_work = employee.poll();
+
+            if (employee_work > now.arrive){
+                wait += (employee_work - now.arrive);
+                employee.add(employee_work + now.use);
+            } else {
+                employee.add(now.arrive + now.use);
+            }
+        }
+        double ans = Math.round((double) wait / m * 100) / 100.0;
+        System.out.println(String.valueOf(ans));
+    }
+}
+*/
