@@ -19,6 +19,7 @@ class cell {
         this.max = max;
         this.bracket = bracket;
     }
+
     public cell(int bracket){
         this.bracket = bracket;
     }
@@ -38,7 +39,7 @@ public class ide {
         Stack<cell> st = new Stack<>();
         boolean flag = false;
 
-        st.push(new cell(null, 0, 0, 0));
+        st.push(new cell(null, 0, 0, 0)); // 초기값 설정
 
         if (inArray(left, sarr[0]) == -1) {
             flag = true;
@@ -48,38 +49,18 @@ public class ide {
         for (int i = 0; i < sarr.length; i++) {
 
             String s = sarr[i];
-            if(s.length()==0){
-                continue;
-            }
-
             HashMap<String, Integer> map = new HashMap<>();
-            if (flag) {
+
+            if (flag) { //만약 괄호가 아닌 문자로 시작하는 경우
                 map.put(s, 1);
                 st.pop();
                 st.push(new cell(map, findMax(map), 1));
                 flag = !flag;
             } else {
-
                 map = new HashMap<>();
-                int max;
                 if (inArray(left, s) != -1) { //새로운 괄호가 등장한 경우
-
                     int b = inArray(left, s) + 2;
-                    st.push(new cell(inArray(left, s)+2));
-                    i++;
-                    s = sarr[i];
-                    if(inArray(left, s)!=-1){
-                        st.push(new cell(inArray(left, s)+2));
-                        continue;
-                    }
-                    if(inArray(right, s)!=-1){
-                        continue;
-                    }
-                    map.put(s, 1);
-                    cell tmp = new cell(map, findMax(map), b);
-                    st.pop();
-                    st.push(tmp);
-                    continue;
+                    st.push(new cell(map, 0, b, 0));
                 } else if (inArray(right, s) != -1) { // 닫는 괄호라면?
                     int b = inArray(right, s) + 2;
                     cell c = st.pop();
@@ -101,9 +82,12 @@ public class ide {
                 }
             }
         }
-
-        System.out.println(st.peek().value + st.peek().max);
-
+        cell ans = st.pop();
+        if(st.size()==0){
+            System.out.println(ans.value + ans.max);
+        }else{
+            System.out.println("-1");
+        }
 
     }
 
