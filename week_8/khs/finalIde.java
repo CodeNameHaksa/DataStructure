@@ -34,12 +34,12 @@ public class ide {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String str = br.readLine().toLowerCase();
-
-        String[] sarr = str.split(" ");
+        str = str.replaceAll("\\t", " ");
+        String[] sarr = str.trim().split(" ");
         Stack<cell> st = new Stack<>();
         boolean flag = false;
-
-        st.push(new cell(null, 0, 0, 0)); // 초기값 설정
+        HashMap<String, Integer> data = new HashMap<>();
+        st.push(new cell(data, 0, 0, 0)); // 초기값 설정
 
         if (inArray(left, sarr[0]) == -1) {
             flag = true;
@@ -47,8 +47,7 @@ public class ide {
 
 
         for (int i = 0; i < sarr.length; i++) {
-
-            String s = sarr[i];
+            String s = sarr[i].trim();
             HashMap<String, Integer> map = new HashMap<>();
 
             if (flag) { //만약 괄호가 아닌 문자로 시작하는 경우
@@ -61,6 +60,7 @@ public class ide {
                 if (inArray(left, s) != -1) { //새로운 괄호가 등장한 경우
                     int b = inArray(left, s) + 2;
                     st.push(new cell(map, 0, b, 0)); // 빈 스택을 추가
+                    continue;
                 } else if (inArray(right, s) != -1) { // 닫는 괄호라면?
                     int b = inArray(right, s) + 2;
                     cell c = st.pop(); // 스택에서 하나 꺼낸다.
