@@ -60,11 +60,11 @@ public class ide {
                 map = new HashMap<>();
                 if (inArray(left, s) != -1) { //새로운 괄호가 등장한 경우
                     int b = inArray(left, s) + 2;
-                    st.push(new cell(map, 0, b, 0));
+                    st.push(new cell(map, 0, b, 0)); // 빈 스택을 추가
                 } else if (inArray(right, s) != -1) { // 닫는 괄호라면?
                     int b = inArray(right, s) + 2;
-                    cell c = st.pop();
-                    if(b!=c.bracket){
+                    cell c = st.pop(); // 스택에서 하나 꺼낸다.
+                    if(b!=c.bracket){ //꺼낸 cell과 현재 입력받은 괄호 비교해서 같은지 확인
                         System.out.println("-1");
                         System.exit(0);
                     }
