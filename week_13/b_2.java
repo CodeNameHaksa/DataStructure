@@ -1,90 +1,50 @@
 import java.io.*;
+import java.util.*;
 
-public class b_2 {
+public class b_3 {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        String[] sData = br.readLine().split(" ");
-        int[] data = new int[sData.length];
-        for(int i = 0; i <sData.length; i++){
-            data[i] = Integer.parseInt(sData[i]);
-        }
-
-        node root = new node(data[0]);
-        node p = root;
-        for(int i = 1; i < data.length; i++){
-            insert(root, data[i]);
-        }
-
-        preorder(root);
-        System.out.println();
-        postorder(root);
-
-        System.out.println();
-        inorder(root);
-
-
-
-    }
-
-    public static void insert(node root, int key){
-        if(key < root.label){
-            if(root.left != null){
-                insert(root.left, key);
-            }else{
-                root.left = new node(key);
+        Map<String, String[]> tree = new HashMap<>();
+        String[] data = null;
+        String root ="";
+        for(int i = 0; i < N; i++){
+            data = br.readLine().split(" ");
+            if(i == 0){
+                root = data[0];
             }
-        }else{
-            if(root.right != null){
-                insert(root.right, key);
-            }else{
-                root.right = new node(key);
+            String[] arr = new String[2];
+            arr[0] = data[1];
+            arr[1] = data[2];
+            tree.put(data[0], arr);
+        }
+
+        Queue<String> q = new LinkedList<>();
+        String end = ".";
+        String answer = "";
+        String tmp = root;
+        while(!tmp.equals(end)){
+            if(tree.containsKey(tmp)){
+                tmp = tree.get(tmp)[0];
             }
+            if(tmp.equals(end)){
+                break;
+            }
+            answer = tmp +" "+answer;
         }
+        tmp = root;
+        answer += root+" ";
+        while(!tmp.equals(end)){
+            if(tree.containsKey(tmp)){
+                tmp = tree.get(tmp)[1];
+            }
+            if(tmp.equals(end)){
+                break;
+            }
+            answer = answer + tmp + " ";
+        }
+
+
+        System.out.println(answer);
     }
-
-    public static void preorder(node root){
-        System.out.print(root+" ");
-        if(root.left!=null){
-            preorder(root.left);
-        }
-        if(root.right!=null){
-            preorder(root.right);
-        }
-    }
-
-    public static void postorder(node root){
-        if(root.left!=null){
-            postorder(root.left);
-        }
-        if(root.right!=null){
-            postorder(root.right);
-        }
-        System.out.print(root+" ");
-    }
-
-    public static void inorder(node root){
-        if(root.left!=null){
-            inorder(root.left);
-        }
-        System.out.print(root+" ");
-        if(root.right!=null){
-            inorder(root.right);
-        }
-    }
-
-
-}
-class node{
-    node left;
-    node right;
-    int label;
-
-    public node(int label){
-        this.label = label;
-    }
-    public String toString(){
-        return Integer.toString(label);
-    }
-
 }
